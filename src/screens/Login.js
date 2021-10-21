@@ -12,22 +12,6 @@ export default class Login extends Component{
         }
     }
 
-    handleLogin() {
-    // alert(`usuario: ${this.state.email}, password: ${this.state.password}`)
-        auth.createUserWithEmailAndPassword(this.state.email, this.state.password){
-            auth.signInWithEmailAndPassword(email, pass)
-                .then((response) => {
-                this.setState({
-                    loggedIn: true
-                });
-            })
-            .catch(error => {
-            this.setState({error: 'Credenciales inválidas.'})
-            })
-            }
-    }
-
-
     render(){
         return(
             <View style={styles.container}>
