@@ -9,12 +9,20 @@ export default class Home extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <Text> Home </Text>
+                <Text style={styles.text}> Home </Text>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-
+    container: {
+        flex: 1,
+        alignItems: 'center'
+    },
+    text: {
+        color: '#212529',
+        fontSize: 20,
+        margin: 10
+    }
 })

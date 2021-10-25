@@ -5,7 +5,6 @@ import Login from './Login';
 import Register from './Register';
 import Home from './Home';
 import { auth } from '../firebase/config';
-import { render } from "react-dom";
 
 export default class Menu extends Component {
     constructor(props){
@@ -18,7 +17,7 @@ export default class Menu extends Component {
 
 
     handleLogin(email, password){
-        auth.sinInWithEmailAndPasword(email, password)
+        auth.singInWithEmailAndPasword(email, password)
         .then( response => {
             alert("logged user");
             this.setState({

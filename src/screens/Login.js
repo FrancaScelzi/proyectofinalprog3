@@ -1,6 +1,5 @@
 import React, { Component }  from "react";
-import { Text, View, StyleSheet} from "react-native";
-import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
+import { Text, View, StyleSheet, TextInput, TouchableOpacity} from "react-native";
 import { auth } from '../firebase/config'
 
 export default class Login extends Component{
@@ -15,19 +14,19 @@ export default class Login extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <Text> Login </Text>
+                <Text style={styles.text}> Login </Text>
                 <TextInput
-                style={styles.container}
-                keyboardType= 'email-address'
-                placeholder= 'emai'
-                onChangeText= {text => this.setState({email:text})}
+                    style={styles.field}
+                    keyboardType= 'email-address'
+                    placeholder= 'email'
+                    onChangeText= {text => this.setState({email:text})}
                 />
                 <TextInput
-                style={styles.field}
-                keyboardType='number-pad'
-                placeholder="password"
-                secureTextEntry={true}
-                onChangeText={text => this.setState({ password: text })}
+                    style={styles.field}
+                    keyboardType='number-pad'
+                    placeholder="password"
+                    secureTextEntry={true}
+                    onChangeText={text => this.setState({ password: text })}
                 />
                 <TouchableOpacity style = {styles.button} onPress= {() => this.handleLogin()}>
                     <Text style = {styles.text}>Login</Text>
@@ -44,17 +43,21 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     field: {
-        width: '80%',
-        backgroundColor: "#09009B",
-        color: '#FFA400',
+        width: '50%',
+        backgroundColor: "#ced4da",
+        color: '#212529',
         padding: 10,
-        marginVertical: 10
+        margin: 10
     },
     button: {
-        width: '30%',
-        backgroundColor: "#0F00FF",
+        margin: 10,
+        width: '20%',
+        backgroundColor: "#ced4da",
+        alignItems: "center",
     },
     text: {
-        color: '#FFA400'
+        color: '#212529',
+        fontSize: 20,
+        margin: 10
     }
 })
