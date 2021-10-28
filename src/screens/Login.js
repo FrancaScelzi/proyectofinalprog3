@@ -28,7 +28,7 @@ export default class Login extends Component{
                     secureTextEntry={true}
                     onChangeText={text => this.setState({ password: text })}
                 />
-                <TouchableOpacity style = {styles.button} onPress= {() => this.handleLogin()}>
+                <TouchableOpacity style = {styles.button} onPress= {() => this.props.handleLogin(this.state.email, this.state.password)}>
                     <Text style = {styles.text}>Login</Text>
 
                 </TouchableOpacity>

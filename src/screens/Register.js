@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { Text, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native';
-import { auth } from '../firebase/config';
+// import { auth } from '../firebase/config';
 
 export default class Register extends Component {
     constructor(props) {
@@ -17,7 +17,7 @@ handleRegister(){
             this.props.handleRegister(this.state.email, this.state.password, this.state.username)
         }
      else {
-         console.log("Completar los campos!")
+         console.log("¡Completar los campos!")
      }
     }
 
@@ -28,14 +28,14 @@ render(){
     <TextInput
         style={styles.field}
         keyboardType="default"
-        placeholder="username"
+        placeholder="Username"
         
         onChangeText={text => this.setState({ username: text })}
     />
     <TextInput
         style={styles.field}
         keyboardType="email-address"
-        placeholder="email"
+        placeholder="Email"
         onChangeText={text => this.setState({ email: text })}
     />
     <TextInput
@@ -45,7 +45,7 @@ render(){
         secureTextEntry={true}
         onChangeText={text => this.setState({ password: text })}
     />
-    <TouchableOpacity style = {styles.button} onPress={() => this.handleRegister()}>
+    <TouchableOpacity style = {styles.button} onPress={() => handleRegister()}>
         <Text style = {styles.text}> Sign Up </Text>
     </TouchableOpacity>
 </View>
