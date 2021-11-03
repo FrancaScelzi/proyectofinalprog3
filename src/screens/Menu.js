@@ -28,7 +28,7 @@ export default class Menu extends Component {
     }
     
     handleLogin(email, password){
-        auth.singInWithEmailAndPasword(email, password)
+        auth.signInWithEmailAndPassword(email, password)
         .then( response => {
             alert("Iniciaste sesión con éxito");
             this.setState({

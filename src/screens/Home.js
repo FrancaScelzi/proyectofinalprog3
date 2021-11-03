@@ -52,18 +52,21 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     field: {
-        width: '80%',
-        backgroundColor: "#09009B",
-        color: '#FFA400',
+        width: '50%',
+        backgroundColor: "#ced4da",
+        color: '#212529',
         padding: 10,
-        marginVertical: 10
+        margin: 10
     },
     button: {
-        width: '30%',
-        backgroundColor: "#0F00FF",
+        margin: 10,
+        width: '20%',
+        backgroundColor: "#ced4da",
+        alignItems: "center",
     },
     text: {
-        color: '#FFA400',
-        fontSize: 20
+        color: '#212529',
+        fontSize: 20,
+        margin: 10
     }
 })
