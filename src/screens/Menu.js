@@ -5,6 +5,7 @@ import Login from './Login';
 import Register from './Register';
 import Home from './Home';
 import { auth } from '../firebase/config';
+import CreatePost from './CreatePost'
 
 export default class Menu extends Component {
     constructor(props){
@@ -16,6 +17,7 @@ export default class Menu extends Component {
     }
 
     componentDidMount(){
+    // Su rol es recordar la sesión iniciada. Si no está, cada vez que se refresque la págna hay que volver a iniciar sesión
         auth.onAuthStateChanged( user => {
             if(user){
                 this.setState({
@@ -45,6 +47,7 @@ export default class Menu extends Component {
         auth.createUserWithEmailAndPassword(email, password)
         .then(response => {
             alert("Registro exitoso");
+            // Con updateProfile se le agrega el nombre de usuario al displayName que es una propiedad del user de firebase
             response.user.updateProfile({
                 displayName: username
             })
@@ -78,7 +81,7 @@ export default class Menu extends Component {
 
         return(
             <NavigationContainer>
-                <Drawer.Navigator initialRouteName = 'Login'>
+                <Drawer.Navigator initialRouteName ='Login'>
                     {this.state.loggedIn === true ?
                     <>
                     <Drawer.Screen name = 'Home'>

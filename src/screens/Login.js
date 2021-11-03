@@ -11,6 +11,15 @@ export default class Login extends Component{
         }
     }
 
+    onLogin(){
+        if (this.state.email !== "" && this.state.password !== ""){
+                this.props.handleLogin(this.state.email, this.state.password)
+            }
+         else {
+             console.log("¡Completar los campos!")
+         }
+        }
+
     render(){
         return(
             <View style={styles.container}>
@@ -18,19 +27,18 @@ export default class Login extends Component{
                 <TextInput
                     style={styles.field}
                     keyboardType= 'email-address'
-                    placeholder= 'email'
+                    placeholder= 'Email'
                     onChangeText= {text => this.setState({email:text})}
                 />
                 <TextInput
                     style={styles.field}
                     keyboardType='number-pad'
-                    placeholder="password"
+                    placeholder="Password"
                     secureTextEntry={true}
                     onChangeText={text => this.setState({ password: text })}
                 />
-                <TouchableOpacity style = {styles.button} onPress= {() => this.props.handleLogin(this.state.email, this.state.password)}>
+                <TouchableOpacity style = {styles.button} onPress= {() => this.onLogin()}>
                     <Text style = {styles.text}>Login</Text>
-
                 </TouchableOpacity>
             </View>
         )

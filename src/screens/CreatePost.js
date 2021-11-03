@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {  } from 'react';
 import { Text, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { auth, db } from '../firebase/config';
 
@@ -15,9 +14,10 @@ export default class CreatePost extends Component {
         db.collection('posts').add({
             owner: auth.currentUser.displayName,
             description: this.state.comment,
+            email: auth.currentUser.email,
             cratedAt: Date.now(),
             likes: [],
-            comments: []
+            comments: [],
         })
 
         .then(response => {
@@ -41,7 +41,7 @@ export default class CreatePost extends Component {
                 <TextInput
                     style= {styles.field}
                     keyboardType='default'
-                    placeholder="What are you thinking?"
+                    placeholder="What are you thinking about?"
                     multiline={true}
                     numberOfLines = {4}
                     onChangeText={text => this.setState({ comment: text })}
