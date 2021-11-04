@@ -1,0 +1,8 @@
+https://coolors.co/ccd5ae-e9edc9-fefae0-faedcd-d4a373
+
+- Verde oscuro: #CCD5AE
+- Verde claro: #E9EDC9
+- Crema claro: #FEFAE0
+- Crema oscuro: #FAEDCD
+- Marrón / beige: #D4A373
+

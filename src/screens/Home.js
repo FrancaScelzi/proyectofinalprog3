@@ -11,15 +11,18 @@ export default class Home extends Component {
         }
     }
     componentDidMount(){
-        db.collection('posts').orderBy("createdAt", "desc").onSnapshot(
+        db.collection('posts').orderBy("cratedAt", "desc").onSnapshot(
             docs => {
+                console.log(docs);
                 let postsAux = [] //Variable auxiliar
                 docs.forEach( doc => {
+                    console.log(doc.id);
                     postsAux.push({
                         id: doc.id,
                         data: doc.data()
                     })
                 })
+                console.log(postsAux);
                 this.setState({
                     posts: postsAux
                 })
@@ -39,7 +42,7 @@ export default class Home extends Component {
                 data = {this.state.posts}
                 keyExtractor = {post => post.id.toString()}
                 renderItem = { ({item}) => 
-                    <Post item = {item}></Post> }
+                    <Post dataItem = {item}></Post> }
                 />
             </View>
         )

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Modal} from 'react-native';
 import { auth, db } from '../firebase/config';
 import firebase from 'firebase';
 
@@ -8,7 +8,9 @@ export default class Post extends Component {
         super(props);
         this.state = {
             liked: false,
-            likes: 0
+            likes: 0,
+            commented: false,
+            comments: []
         }
     }
 
@@ -56,7 +58,14 @@ export default class Post extends Component {
         })
     }
 
+    onComment(){
+
+    }
+
+    
+
     render(){
+        // console.log(this.props.dataItem);
         return(
             <View stlye={styles.container}>
                 <Text>{this.props.dataItem.data.description}</Text>
