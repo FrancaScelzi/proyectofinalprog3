@@ -1,10 +1,11 @@
+import React, {Component} from 'react';
 import {Camera} from 'expo-camera';
-import React from 'react'
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {storage} from '../firebase/config'
 
 export default class MyCamera extends React.Component{
     constructor(props){
+        super(props);
         this.camera; // Variable vacía
         this.state = {
             photo: '',
@@ -34,14 +35,15 @@ export default class MyCamera extends React.Component{
 
     uploadImage(){
         fetch(this.state.photo)
-        .then(res=> {
+        .then(res => {
             return res.blob();
         })
-        .then(image=>{
+        .then(image => {
             const ref = storage.ref(`camera/${Date.now()}.jpg`)
             ref.put(image)
-            .then(()=>{
+            .then(() => {
                 console.log(ref.getDownloadURL);
+                
                 ref.getDownloadURL()
                 .then(url => {
                     console.log(url);
@@ -108,28 +110,56 @@ export default class MyCamera extends React.Component{
 
 export const styles = StyleSheet.create({
     container: {
-            flex: 1,
-            alignItems: 'center'
-        },
-        field: {
-            width: '50%',
-            backgroundColor: "#ced4da",
-            color: '#212529',
-            padding: 10,
-            margin: 10
-        },
-        button: {
-            margin: 10,
-            width: '20%',
-            backgroundColor: "#ced4da",
-            alignItems: "center",
-        },
-        text: {
-            color: '#212529',
-            fontSize: 20,
-            margin: 10
-        },
-        buttonContainer:{
-
-        }
+        flex: 1,
+        alignItems: 'center',
+        width: "100%"
+    },
+    button: {
+        width: 124,
+        height: '100%',
+        borderWidth: 5,
+        borderColor: 'white',
+        borderRadius: 100,
+        backgroundColor: 'rgba(0,0,0,0.1)'
+    },
+    text: {
+        color: '#212529',
+        fontSize: 20,
+        textAlign: 'center',
+    },
+    buttonContainer:{
+        width: '100%',
+        height: 124,
+        position: 'absolute',
+        bottom: 40,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    camera:{
+        flex: 1,
+        width: "100%",
+    },
+    reject:{
+        width: "20%",
+        margin: 20,
+        padding: 10,
+        height: 50,
+        backgroundColor: '#CCD5AE',
+        borderRadius: 5,
+        alignItems: "center",
+    },
+    accept:{
+        width: "20%",
+        margin: 20,
+        padding: 10,
+        height: 50,
+        backgroundColor: '#CCD5AE',
+        borderRadius: 5,
+        alignItems: "center",
+    },
+    preview:{
+        width: '100%',
+        flex: 6
+    }
 })

@@ -41,7 +41,7 @@ export default class CreatePost extends Component {
 
     guardarFoto(){
         this.setState({
-            photo:url,
+            photo: url,
             showCamera:false
         })
     }
