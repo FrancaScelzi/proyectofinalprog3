@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Text, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native';
+import { Text, TextInput, TouchableOpacity, View, StyleSheet, Image} from 'react-native';
 import { auth } from '../firebase/config';
 
 export default class Register extends Component {
@@ -24,7 +24,13 @@ onRegister(){
 render(){
     return (
     <View style={styles.container}>
-        <Text style={styles.text}>Registro</Text>
+        <View>
+          <Image
+            source={require("../../assets/appLogo.png")}
+            style={styles.appLogo}
+            resizeMode={"contain"}
+          />
+        </View>
         <TextInput
             style={styles.field}
             keyboardType="default"
@@ -56,24 +62,36 @@ render(){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: "white",
     },
     field: {
-        width: '50%',
-        backgroundColor: "#ced4da",
-        color: '#212529',
+        width: '70%',
+        height: 50,
+        backgroundColor: "#FAFAFA",
+        borderRadius: 5,
+        borderColor: "gray",
+        borderWidth: 0.1,
         padding: 10,
-        margin: 10
+        margin: 10,
     },
     button: {
         margin: 10,
-        width: '20%',
-        backgroundColor: "#ced4da",
+        width: "20%",
         alignItems: "center",
+        backgroundColor: "#CCD5AE",
+        borderRadius: 5,
+        marginTop: 25,
+        width: 171,
+        height: 45,
     },
     text: {
         color: '#212529',
         fontSize: 20,
         margin: 10
-    }
+    },
+    appLogo: {
+        height: 200,
+        width: 200,
+      },
 })
