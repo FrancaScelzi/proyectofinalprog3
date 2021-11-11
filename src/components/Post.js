@@ -9,6 +9,7 @@ export default class Post extends Component {
         this.state = {
             liked: false,
             likes: 0,
+            showModal: false,
             commented: false,
             comments: []
         }
@@ -62,7 +63,17 @@ export default class Post extends Component {
 
     }
 
-    
+    showModal(){
+        this.setState({
+            showModal: true
+        })
+    }
+
+    closeModal(){
+        this.setState({
+            showModal: false
+        })
+    }
 
     render(){
         // console.log(this.props.dataItem);
@@ -86,8 +97,35 @@ export default class Post extends Component {
                         </Text>
                     </TouchableOpacity>
                 }
-                <Modal>
+                <TouchableOpacity onPress = {()=> this.showModal()}>
+                    <Text>
+                        Ver comentarios
+                    </Text>
+                </TouchableOpacity>
+                {
+                    this.state.showModal ?
+                <Modal
+                    animationType= 'fade'
+                    transparent={false}
+                    visible = {this.state.showModal}
+                    style = {styles.modal}
+                >
+
+                    <View style ={styles.modalView}>
+                        <TouchableOpacity style={styles.closeModal} onPress={()=>{this.closeModal()}}>
+                            <Text style={styles.modalText}></Text>
+                        </TouchableOpacity>
+                        <Text>
+                            Acá también van comentarios
+                        </Text>
+                        <Text>
+                            Acá también debe ir la posibilidad de agregar un comentario
+                        </Text>
+                    </View>
                 </Modal>
+                :
+                null
+                }
             </View>  
         )
     }
@@ -102,5 +140,25 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         padding: 5,
+    },
+    closeModal:{
+        alignSelf: 'flex-end',
+        padding: 10,
+        backgroundColor: '#dc3545',
+        marginTop:2,
+        marginBotom: 10,
+        borderRadius: 4,
+    },
+
+    modalText:{
+        fontWeight: 'bold',
+        color:'#fff',
+    },
+    modalView:{
+        backgroundColor: 'green',
+        borderRadius: 10,
+    },
+    modal: {
+        border: 'none',
     }
 })

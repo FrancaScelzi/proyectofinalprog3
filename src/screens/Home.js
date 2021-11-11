@@ -22,7 +22,6 @@ export default class Home extends Component {
                         data: doc.data()
                     })
                 })
-                console.log(postsAux);
                 this.setState({
                     posts: postsAux
                 })

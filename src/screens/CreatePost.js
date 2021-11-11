@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Text, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native';
+import { Text, Image, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { auth, db } from '../firebase/config';
 import MyCamera from '../components/MyCamera';
 
@@ -39,7 +39,7 @@ export default class CreatePost extends Component {
         })
     }
 
-    guardarFoto(){
+    savePhoto(url){
         this.setState({
             photo: url,
             showCamera:false
@@ -50,9 +50,13 @@ export default class CreatePost extends Component {
         return(
             <>
             {this.state.showCamera ?
-            <MyCamera savePhoto = {(url)=> this.guardarFoto(url)}/>
+            <MyCamera savePhoto = {(url)=> this.savePhoto(url)}/>
             :    
             <View style={styles.container}>
+                <Image
+                    source={{uri: this.state.photo}}
+                    style = {styles.container}
+                />
                 <TextInput
                     style= {styles.field}
                     keyboardType='default'

@@ -47,7 +47,7 @@ export default class Login extends Component {
         </TouchableOpacity>
         <View>
           <TouchableOpacity onPress={() => console.log("Navegar al registro")}>
-            <Text style={styles.textBtn}>¿No tenes cuenta? Registrate!</Text>
+            <Text style={styles.textBtn}>¿No tenés cuenta? ¡Registrate!</Text>
           </TouchableOpacity>
         </View>
       </View>
