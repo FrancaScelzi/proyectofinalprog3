@@ -71,7 +71,22 @@ export default class Post extends Component {
       });
   }
 
-  onComment() {}
+  // onComment() {
+  //   const posteoActualizar = db.collection("posts").doc(this.props.dataItem.id);
+
+  //   posteoActualizar
+  //     .update({
+  //       comments: firebase.firestore.FieldValue.arrayRemove(
+  //         auth.currentUser.email
+  //       ),
+  //     })
+  //     .then(() => {
+  //       this.setState({
+  //         commented: true,
+  //         comments: this.state.comments + 1,
+  //       });
+  //     });
+  // }
 
   showModal() {
     this.setState({
