@@ -33,8 +33,11 @@ export default class Profile extends Component{
     render(){
         return(
             <View style={styles.container}>
+                
                 <Text>Profile: {auth.currentUser.displayName}</Text>
                 <Text>Last access: {auth.currentUser.metadata.lastSignInTime}</Text>
+                <Text>Email: {auth.currentUser.email}</Text>
+                {/* <Text>Posts: {auth.currentUser.}</Text> */}
 
                 <TouchableOpacity style={styles.button} onPress={()=> this.props.handleLogout()}>
                     <Text style={styles.text}>Logout</Text>

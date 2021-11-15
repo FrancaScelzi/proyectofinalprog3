@@ -101,7 +101,6 @@ export default class Post extends Component {
   }
 
   render() {
-    // console.log(this.props.dataItem);
     return (
       <View style={styles.container}>
         <Text>{this.props.dataItem.data.owner}</Text>
