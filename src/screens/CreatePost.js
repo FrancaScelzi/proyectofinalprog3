@@ -55,7 +55,7 @@ export default class CreatePost extends Component {
             <View style={styles.container}>
                 <Image
                     source={{uri: this.state.photo}}
-                    style = {styles.container}
+                    style = {styles.imagen}
                 />
                 <TextInput
                     style= {styles.field}
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         margin: 10
     },
     imagen:{
-        height: 300,
+        height: 500,
         width: '90%'
     }
 })
