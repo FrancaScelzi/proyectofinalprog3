@@ -38,12 +38,6 @@ export default class Home extends Component {
     console.log(this.state.posts);
     return (
       <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => this.props.handleLogout()}
-        >
-          <Text style={styles.text}> Cerrar sesión </Text>
-        </TouchableOpacity>
         {/* Lazy louder: carga a medida que se scrollea */}
         <FlatList
           data={this.state.posts}
@@ -62,16 +56,11 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     alignItems: "center",
+    backgroundColor: "#E9EDC9",
   },
   postList: {
-      padding: "10%",
+      padding: "2%",
       width: "100%"
-  },
-  button: {
-    margin: 10,
-    width: "20%",
-    backgroundColor: "#ced4da",
-    alignItems: "center",
   },
   text: {
     color: "#212529",

@@ -34,10 +34,9 @@ export default class Profile extends Component{
     render(){
         return(
             <View style={styles.container}>
-                
-                <Text>Profile: {auth.currentUser.displayName}</Text>
-                <Text>Last access: {auth.currentUser.metadata.lastSignInTime}</Text>
+                <Text style={styles.username}>{auth.currentUser.displayName}</Text>
                 <Text>Email: {auth.currentUser.email}</Text>
+                <Text>Last access: {auth.currentUser.metadata.lastSignInTime}</Text>
                 <Text>Posts: {this.state.posts.length}</Text>
 
                 <TouchableOpacity style={styles.button} onPress={()=> this.props.handleLogout()}>
@@ -63,20 +62,31 @@ const styles = StyleSheet.create({
       width: "100%",
       height: "100%",
       alignItems: "center",
+      backgroundColor: "#E9EDC9",
+      paddingTop: "5%",
     },
     postList: {
         padding: "10%",
         width: "100%"
     },
     button: {
-      margin: 10,
-      width: "20%",
-      backgroundColor: "#ced4da",
-      alignItems: "center",
+        margin: 10,
+        width: "20%",
+        alignItems: "center",
+        backgroundColor: "#CCD5AE",
+        borderRadius: 50,
+        marginTop: 25,
+        width: 171,
+        height: 45,
     },
     text: {
       color: "#212529",
-      fontSize: 20,
+      fontSize: 10,
       margin: 10,
     },
+    username: {
+        fontWeight: "bold",
+        fontFamily: "Montserrat",
+        textTransform: 'uppercase',
+        }
   });

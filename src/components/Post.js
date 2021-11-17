@@ -103,24 +103,24 @@ export default class Post extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{this.props.dataItem.data.owner}</Text>
+        <Text style={styles.username}>{this.props.dataItem.data.owner}</Text>
         <Image
           style={styles.image}
           source={{ uri: this.props.dataItem.data.photo }}
           resizeMode="cover"
         />
-        <Text>{this.props.dataItem.data.description}</Text>
-        <Text>{this.props.dataItem.data.createdAt}</Text>
-        <Text>Likes: {this.state.likes}</Text>
         {!this.state.liked ? (
           <TouchableOpacity onPress={() => this.onLike()}>
-            <Text>Like</Text>
+            <Text>❤️</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity onPress={() => this.onDislike()}>
-            <Text>Dislike</Text>
+            <Text>🖤</Text>
           </TouchableOpacity>
         )}
+        <Text>Likes: {this.state.likes}</Text>
+        <Text>{this.props.dataItem.data.description}</Text>
+        <Text>{this.props.dataItem.data.createdAt}</Text>
         <TouchableOpacity onPress={() => this.showModal()}>
           <Text>Ver comentarios</Text>
         </TouchableOpacity>
@@ -157,15 +157,16 @@ const styles = StyleSheet.create({
     height: 300,
     marginTop:"5%",
     marginBottom: "5%",
+    borderRadius: "5%"
   },
   container: {
     flex: 1,
     justifyContent: "center",
     width: "100%",
-    padding: "10%",
     backgroundColor: 'white',
     borderRadius: 15,
-    marginBottom: "15%"
+    marginBottom: "10%",
+    backgroundColor: "#E9EDC9"
   },
   closeModal: {
     alignSelf: "flex-end",
@@ -187,4 +188,9 @@ const styles = StyleSheet.create({
   modal: {
     border: "none",
   },
+  username: {
+    fontWeight: "bold",
+    fontFamily: "Montserrat",
+    textTransform: 'uppercase',
+    }
 });
