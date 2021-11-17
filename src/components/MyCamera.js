@@ -112,7 +112,6 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        width: "100%"
     },
     button: {
         width: 124,
@@ -122,40 +121,38 @@ export const styles = StyleSheet.create({
         borderRadius: 100,
         backgroundColor: 'rgba(0,0,0,0.1)'
     },
-    text: {
-        color: '#212529',
-        fontSize: 20,
-        textAlign: 'center',
-    },
     buttonContainer:{
         width: '100%',
-        height: 124,
+        height: 125,
         position: 'absolute',
         bottom: 40,
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
     },
+    text: {
+        color: "black",
+        fontSize: 18,
+        margin: 10,
+    },
     camera:{
         flex: 1,
         width: "100%",
     },
     reject:{
-        width: "20%",
-        margin: 20,
-        padding: 10,
-        height: 50,
-        backgroundColor: '#CCD5AE',
-        borderRadius: 5,
+        width: "40%",
+        height: 45,
+        backgroundColor: "#CCD5AE",
+        borderRadius: 30,
+        margin: 10,
         alignItems: "center",
     },
     accept:{
-        width: "20%",
-        margin: 20,
-        padding: 10,
-        height: 50,
-        backgroundColor: '#CCD5AE',
-        borderRadius: 5,
+        width: "40%",
+        height: 45,
+        backgroundColor: "#CCD5AE",
+        borderRadius: 30,
+        margin: 10,
         alignItems: "center",
     },
     preview:{

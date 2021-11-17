@@ -34,14 +34,16 @@ export default class Profile extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <Text style={styles.username}>{auth.currentUser.displayName}</Text>
-                <Text>Email: {auth.currentUser.email}</Text>
-                <Text>Last access: {auth.currentUser.metadata.lastSignInTime}</Text>
-                <Text>Posts: {this.state.posts.length}</Text>
+                <View style={styles.headerPerfil}>
+                    <Text style={styles.username}>{auth.currentUser.displayName}</Text>
+                    <Text style={styles.text}>{auth.currentUser.email}</Text>
+                    <Text style={styles.text}>Último acceso: {auth.currentUser.metadata.lastSignInTime}</Text>
+                    <Text style={styles.text}>{this.state.posts.length} posteos</Text>
+                </View>
 
-                <TouchableOpacity style={styles.button} onPress={()=> this.props.handleLogout()}>
+                {/* <TouchableOpacity style={styles.button} onPress={()=> this.props.handleLogout()}>
                     <Text style={styles.text}>Cerrar sesión</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
 
                 <FlatList
                 data={this.state.posts}
@@ -58,35 +60,37 @@ export default class Profile extends Component{
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      width: "100%",
-      height: "100%",
-      alignItems: "center",
-      backgroundColor: "#E9EDC9",
-      paddingTop: "5%",
+        flex: 1,
+        backgroundColor: "white",
+        paddingTop: "5%",
+    },
+    headerPerfil: {
+        paddingLeft: "5%",
+        paddingRight: "5%"
     },
     postList: {
-        padding: "10%",
+        marginTop: "5%",
+        padding: "5%",
         width: "100%"
     },
-    button: {
-        margin: 10,
-        width: "20%",
-        alignItems: "center",
-        backgroundColor: "#CCD5AE",
-        borderRadius: 50,
-        marginTop: 25,
-        width: 171,
-        height: 45,
+    username: {
+        alignSelf: "flex-end",
+        fontSize: 20,
+        color:"#D4A373",
+        fontWeight: "bold",
+        textTransform: 'uppercase',
     },
     text: {
-      color: "#212529",
-      fontSize: 10,
-      margin: 10,
+        alignSelf: "flex-end",
+        color: "#83944C",
+        fontSize: 15,
     },
-    username: {
-        fontWeight: "bold",
-        fontFamily: "Montserrat",
-        textTransform: 'uppercase',
-        }
+    // button: {
+    //     width: "40%",
+    //     height: 45,
+    //     backgroundColor: "#CCD5AE",
+    //     borderRadius: 30,
+    //     margin: 10,
+    //     alignItems: "center",
+    // },
   });

@@ -1,12 +1,13 @@
 import React, {Component} from "react"
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import { auth } from '../firebase/config';
 import Login from './Login';
 import Register from './Register';
 import Home from './Home';
-import { auth } from '../firebase/config';
-import CreatePost from './CreatePost';
+import Search from './Search'
 import Profile from './Profile'
+import CreatePost from './CreatePost';
 import Logout from './Logout'
 
 export default class Menu extends Component {
@@ -89,17 +90,18 @@ export default class Menu extends Component {
                     <Drawer.Screen name = 'Home'>
                         {props => <Home {...props}/>}
                     </Drawer.Screen>
-                    <Drawer.Screen name = 'Publicar receta'>
-                        {props => <CreatePost {...props}/>}
+                    <Drawer.Screen name='Buscador'>
+                    {props => <Search {...props}/>}
                     </Drawer.Screen>
                     <Drawer.Screen name= 'Tu perfil'>
                         {props => <Profile {...props} handleLogout={()=> this.handleLogout()}/>}
                     </Drawer.Screen>
+                    <Drawer.Screen name = 'Publicar receta'>
+                        {props => <CreatePost {...props}/>}
+                    </Drawer.Screen>
                     <Drawer.Screen name='Cerrar sesión'>
                         {props => <Logout {...props} handleLogout={()=> this.handleLogout()}/>}
                     </Drawer.Screen>
-                    {/* <Drawer.Screen name='Search'>
-                    </Drawer.Screen> */}
                     </>
                     :
                     <>

@@ -118,9 +118,9 @@ export default class Post extends Component {
             <Text>🖤</Text>
           </TouchableOpacity>
         )}
-        <Text>Likes: {this.state.likes}</Text>
-        <Text>{this.props.dataItem.data.description}</Text>
-        <Text>{this.props.dataItem.data.createdAt}</Text>
+        <Text style={styles.text}>{this.state.likes} likes</Text>
+        <Text style={styles.text}>{this.props.dataItem.data.description}</Text>
+        {/* <Text style={styles.text}>{this.props.dataItem.data.cratedAt}</Text> */}
         <TouchableOpacity onPress={() => this.showModal()}>
           <Text>Ver comentarios</Text>
         </TouchableOpacity>
@@ -155,42 +155,44 @@ export default class Post extends Component {
 const styles = StyleSheet.create({
   image: {
     height: 300,
-    marginTop:"5%",
-    marginBottom: "5%",
-    borderRadius: "5%"
+    marginTop:"3%",
+    marginBottom: "3%",
+    padding: "%5",
+    borderRadius: 15,
   },
   container: {
     flex: 1,
-    justifyContent: "center",
-    width: "100%",
-    backgroundColor: 'white',
+    backgroundColor: "#F3F5E0",
     borderRadius: 15,
-    marginBottom: "10%",
-    backgroundColor: "#E9EDC9"
-  },
-  closeModal: {
-    alignSelf: "flex-end",
     padding: 10,
-    backgroundColor: "#dc3545",
-    marginTop: 2,
-    marginBottom: 10,
-    borderRadius: 4,
+    marginBottom: "10%",
   },
-
-  modalText: {
-    fontWeight: "bold",
-    color: "#fff",
-  },
-  modalView: {
-    backgroundColor: "green",
-    borderRadius: 10,
+  text: {
+    color: "black",
+    fontSize: 15,
+    marginBottom: 5,
   },
   modal: {
     border: "none",
+    marginTop: 10,
+  },
+  closeModal: {
+    backgroundColor: "red",
+    alignSelf: "flex-end",
+    borderRadius: 50,
+    padding: 10,
+    margin: 10,
+  },
+  modalText: {
+    color: "black",
+  },
+  modalView: {
+    backgroundColor: "white",
+    borderRadius: 15,
+    padding: 10,
   },
   username: {
     fontWeight: "bold",
-    fontFamily: "Montserrat",
     textTransform: 'uppercase',
     }
 });

@@ -54,17 +54,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
-    height: "100%",
-    alignItems: "center",
-    backgroundColor: "#E9EDC9",
+    backgroundColor: "white",
   },
   postList: {
-      padding: "2%",
+      padding: "5%",
       width: "100%"
   },
   text: {
-    color: "#212529",
-    fontSize: 20,
+    color: "black",
+    fontSize: 18,
     margin: 10,
   },
 });

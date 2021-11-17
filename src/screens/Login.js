@@ -47,7 +47,7 @@ export default class Login extends Component {
         </TouchableOpacity>
         <View>
           <TouchableOpacity onPress={() => console.log("Navegar al registro")}>
-            <Text style={styles.textBtn}>¿No tenés cuenta? ¡Registrate!</Text>
+            <Text style={styles.text}>¿No tenés cuenta? ¡Registrate!</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -65,31 +65,24 @@ const styles = StyleSheet.create({
     width: "70%",
     height: 50,
     backgroundColor: "#FAFAFA",
-    borderRadius: 5,
-    borderColor: "gray",
-    borderWidth: 0.1,
-    padding: 10,
+    borderRadius: 30,
     margin: 10,
+    padding: 10,
+    borderColor: "#CCD5AE",
+    borderWidth: 0.1,
   },
   button: {
-    margin: 10,
-    width: "20%",
-    alignItems: "center",
-    backgroundColor: "#CCD5AE",
-    borderRadius: 5,
-    marginTop: 25,
-    width: 171,
+    width: "40%",
     height: 45,
+    backgroundColor: "#CCD5AE",
+    borderRadius: 30,
+    margin: 10,
+    alignItems: "center",
   },
   text: {
-    color: "#212529",
-    fontSize: 20,
+    color: "black",
+    fontSize: 18,
     margin: 10,
-  },
-  textBtn: {
-    color: "#212529",
-    fontSize: 20,
-    paddingTop: 40
   },
   appLogo: {
     height: 200,

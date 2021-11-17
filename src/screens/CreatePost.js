@@ -79,28 +79,36 @@ export default class CreatePost extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: "white",
     },
     field: {
-        width: '50%',
-        backgroundColor: "#ced4da",
-        color: '#212529',
+        width: "90%",
+        height: 100,
+        backgroundColor: "#FAFAFA",
+        borderRadius: 30,
+        margin: 10,
         padding: 10,
-        margin: 10
+        borderColor: "#CCD5AE",
+        borderWidth: 0.1,
     },
     button: {
+        width: "40%",
+        height: 45,
+        backgroundColor: "#CCD5AE",
+        borderRadius: 30,
         margin: 10,
-        width: '20%',
-        backgroundColor: "#ced4da",
         alignItems: "center",
     },
     text: {
-        color: '#212529',
-        fontSize: 20,
-        margin: 10
+        color: "black",
+        fontSize: 18,
+        margin: 10,
     },
     imagen:{
         height: 500,
-        width: '90%'
+        width: '90%',
+        marginTop:"3%",
+        marginBottom: "3%",
     }
 })
