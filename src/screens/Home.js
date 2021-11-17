@@ -42,7 +42,7 @@ export default class Home extends Component {
           style={styles.button}
           onPress={() => this.props.handleLogout()}
         >
-          <Text style={styles.text}> Logout </Text>
+          <Text style={styles.text}> Cerrar sesión </Text>
         </TouchableOpacity>
         {/* Lazy louder: carga a medida que se scrollea */}
         <FlatList

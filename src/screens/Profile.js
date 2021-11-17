@@ -8,6 +8,7 @@ export default class Profile extends Component{
     constructor(props){
         super(props);
         this.state = {
+            posts: []
 
         }
     }
@@ -37,10 +38,10 @@ export default class Profile extends Component{
                 <Text>Profile: {auth.currentUser.displayName}</Text>
                 <Text>Last access: {auth.currentUser.metadata.lastSignInTime}</Text>
                 <Text>Email: {auth.currentUser.email}</Text>
-                {/* <Text>Posts: {auth.currentUser.}</Text> */}
+                <Text>Posts: {this.state.posts.length}</Text>
 
                 <TouchableOpacity style={styles.button} onPress={()=> this.props.handleLogout()}>
-                    <Text style={styles.text}>Logout</Text>
+                    <Text style={styles.text}>Cerrar sesión</Text>
                 </TouchableOpacity>
 
                 <FlatList
