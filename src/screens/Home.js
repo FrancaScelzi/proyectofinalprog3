@@ -39,6 +39,7 @@ export default class Home extends Component {
     return (
       <View style={styles.container}>
         {/* Lazy louder: carga a medida que se scrollea */}
+        <Text style={styles.text}>¡Échale un vistazo a las últimas recetas de nuestros chef!</Text>
         <FlatList
           data={this.state.posts}
           keyExtractor={(post) => post.id.toString()}
@@ -64,5 +65,10 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 18,
     margin: 10,
+    fontFamily: 'Montserrat',
+    fontWeight: 'bold',
+    margin: '10%',
+    textAlign: 'center'
+
   },
 });

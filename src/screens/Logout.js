@@ -21,6 +21,7 @@ export default class Login extends Component {
             resizeMode={"contain"}
           />
        </View>
+       <Text style={styles.text}>¿Navegaste lo suficiente? ¡Manos a la obra, chef!</Text>
        <TouchableOpacity style={styles.button} onPress={()=> this.props.handleLogout()}>
                     <Text style={styles.text}>Cerrar sesión</Text>
                 </TouchableOpacity>
@@ -47,6 +48,8 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 18,
     margin: 10,
+    fontFamily: 'Montserrat',
+    textAlign: 'center'
   },
   appLogo: {
     height: 200,

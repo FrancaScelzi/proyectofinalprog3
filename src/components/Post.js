@@ -111,15 +111,15 @@ export default class Post extends Component {
         />
         {!this.state.liked ? (
           <TouchableOpacity onPress={() => this.onLike()}>
-            <Text>❤️</Text>
+            <Text style={styles.like}>❤️</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity onPress={() => this.onDislike()}>
-            <Text>🖤</Text>
+            <Text style={styles.like}>🖤</Text>
           </TouchableOpacity>
         )}
         <Text style={styles.text}>{this.state.likes} likes</Text>
-        <Text style={styles.text}>{this.props.dataItem.data.description}</Text>
+        <Text style={styles.username}>{this.props.dataItem.data.owner} {this.props.dataItem.data.description}</Text>
         {/* <Text style={styles.text}>{this.props.dataItem.data.cratedAt}</Text> */}
         <TouchableOpacity onPress={() => this.showModal()}>
           <Text>Ver comentarios</Text>
@@ -160,6 +160,12 @@ const styles = StyleSheet.create({
     padding: "%5",
     borderRadius: 15,
   },
+  like:{
+    fontSize: 30,
+    
+
+  },
+  // Cómo poner hover?
   container: {
     flex: 1,
     backgroundColor: "#F3F5E0",
@@ -171,6 +177,8 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 15,
     marginBottom: 5,
+    fontFamily: 'Montserrat',
+    padding: '%5'
   },
   modal: {
     border: "none",
@@ -194,5 +202,6 @@ const styles = StyleSheet.create({
   username: {
     fontWeight: "bold",
     textTransform: 'uppercase',
+    fontFamily: 'Montserrat'
     }
 });

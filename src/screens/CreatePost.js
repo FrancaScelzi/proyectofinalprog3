@@ -60,7 +60,7 @@ export default class CreatePost extends Component {
                 <TextInput
                     style= {styles.field}
                     keyboardType='default'
-                    placeholder="What are you thinking about?"
+                    placeholder="Describí tu receta para motivar a otros chef de la comunidad"
                     multiline={true}
                     numberOfLines = {4}
                     onChangeText={text => this.setState({ comment: text })}
@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderColor: "#CCD5AE",
         borderWidth: 0.1,
+        fontFamily: 'Montserrat'
     },
     button: {
         width: "40%",

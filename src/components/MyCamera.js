@@ -77,14 +77,14 @@ export default class MyCamera extends React.Component{
                         <TouchableOpacity
                         style={styles.reject}
                         onPress={()=>this.onReject()}>
-                            <Text style={styles.text}>Cancelar</Text>
+                            <Text style={styles.text}>Tomar otra foto</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity
                         style={styles.accept}
                         onPress={()=> this.uploadImage()}
                         >
-                            <Text style={styles.text}>Subir</Text>
+                            <Text style={styles.text}>Me gusta esta foto</Text>
                         </TouchableOpacity>
                     </View>
                 </>
@@ -132,8 +132,10 @@ export const styles = StyleSheet.create({
     },
     text: {
         color: "black",
-        fontSize: 18,
+        fontSize: 15,
         margin: 10,
+        fontFamily: 'Montserrat',
+        textAlign: 'center'
     },
     camera:{
         flex: 1,

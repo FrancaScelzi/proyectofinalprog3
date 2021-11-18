@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+import {Image, Text, View, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import {auth, db} from '../firebase/config';
 import Post from '../components/Post'
 import firebase from 'firebase';
@@ -35,6 +35,11 @@ export default class Profile extends Component{
         return(
             <View style={styles.container}>
                 <View style={styles.headerPerfil}>
+                <Image
+                    source={require("../../assets/cocinero1.png")}
+                    style={styles.chefIcon}
+                    resizeMode={"contain"}
+                />
                     <Text style={styles.username}>{auth.currentUser.displayName}</Text>
                     <Text style={styles.text}>{auth.currentUser.email}</Text>
                     <Text style={styles.text}>Último acceso: {auth.currentUser.metadata.lastSignInTime}</Text>
@@ -68,6 +73,12 @@ const styles = StyleSheet.create({
         paddingLeft: "5%",
         paddingRight: "5%"
     },
+    chefIcon:{
+        borderRadius: '50%',
+        height: 50,
+        width: 50,
+        alignSelf: "flex-end",
+    },
     postList: {
         marginTop: "5%",
         padding: "5%",
@@ -84,6 +95,7 @@ const styles = StyleSheet.create({
         alignSelf: "flex-end",
         color: "#83944C",
         fontSize: 15,
+        fontFamily: 'Montserrat'
     },
     // button: {
     //     width: "40%",
