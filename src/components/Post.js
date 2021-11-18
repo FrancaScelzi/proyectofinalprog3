@@ -6,10 +6,11 @@ import {
   StyleSheet,
   TouchableOpacity,
   Modal,
+  TextInput,
 } from "react-native";
 import { auth, db } from "../firebase/config";
 import firebase from "firebase";
-
+ 
 export default class Post extends Component {
   constructor(props) {
     super(props);
@@ -19,17 +20,17 @@ export default class Post extends Component {
       showModal: false,
       commented: false,
       comments: [],
+      commentBoxInput: "",
     };
   }
-
+ 
   componentDidMount() {
-    console.log(this.props.dataItem);
     if (this.props.dataItem) {
       if (this.props.dataItem.data.likes.length !== 0) {
         this.setState({
           likes: this.props.dataItem.data.likes.length,
         });
-
+ 
         if (this.props.dataItem.data.likes.includes(auth.currentUser.email)) {
           this.setState({
             liked: true,
@@ -38,10 +39,10 @@ export default class Post extends Component {
       }
     }
   }
-
+ 
   onLike() {
     const posteoActualizar = db.collection("posts").doc(this.props.dataItem.id);
-
+ 
     posteoActualizar
       .update({
         likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email),
@@ -53,10 +54,10 @@ export default class Post extends Component {
         });
       });
   }
-
+ 
   onDislike() {
     const posteoActualizar = db.collection("posts").doc(this.props.dataItem.id);
-
+ 
     posteoActualizar
       .update({
         likes: firebase.firestore.FieldValue.arrayRemove(
@@ -70,36 +71,38 @@ export default class Post extends Component {
         });
       });
   }
-
-  // onComment() {
-  //   const posteoActualizar = db.collection("posts").doc(this.props.dataItem.id);
-
-  //   posteoActualizar
-  //     .update({
-  //       comments: firebase.firestore.FieldValue.arrayRemove(
-  //         auth.currentUser.email
-  //       ),
-  //     })
-  //     .then(() => {
-  //       this.setState({
-  //         commented: true,
-  //         comments: this.state.comments + 1,
-  //       });
-  //     });
-  // }
-
+ 
+  onComment() {
+    const posteoActualizar = db.collection("posts").doc(this.props.dataItem.id);
+    posteoActualizar
+      .update({
+        comments: firebase.firestore.FieldValue.arrayUnion({
+          userDisplayName: auth.currentUser.displayName,
+          comment: this.state.commentBoxInput,
+        }),
+      })
+      .then(() => {
+        this.setState({
+          comments: this.state.comments + 1,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+ 
   showModal() {
     this.setState({
       showModal: true,
     });
   }
-
+ 
   closeModal() {
     this.setState({
       showModal: false,
     });
   }
-
+ 
   render() {
     return (
       <View style={styles.container}>
@@ -119,7 +122,10 @@ export default class Post extends Component {
           </TouchableOpacity>
         )}
         <Text style={styles.text}>{this.state.likes} likes</Text>
-        <Text style={styles.username}>{this.props.dataItem.data.owner} {this.props.dataItem.data.description}</Text>
+        <Text style={styles.username}>
+          {this.props.dataItem.data.owner}{" "}
+          {this.props.dataItem.data.description}
+        </Text>
         {/* <Text style={styles.text}>{this.props.dataItem.data.cratedAt}</Text> */}
         <TouchableOpacity onPress={() => this.showModal()}>
           <Text>Ver comentarios</Text>
@@ -138,12 +144,41 @@ export default class Post extends Component {
                   this.closeModal();
                 }}
               >
-                <Text style={styles.modalText}></Text>
+                <Text style={styles.modalText}>Cerrar</Text>
               </TouchableOpacity>
-              <Text>Acá también van comentarios</Text>
-              <Text>
-                Acá también debe ir la posibilidad de agregar un comentario
-              </Text>
+              <View style={{ height: 100, width: "100%" }}>
+                {this.props.dataItem.data.comments ? (
+                  <>
+                    {this.props.dataItem.data.comments.map((comment) => {
+                      return (
+                        <View>
+                          <Text style={{ color: "black", fontWeight: "bold" }}>
+                            {comment.userDisplayName}
+                          </Text>
+                          <Text style={{ color: "black" }}>
+                            {comment.comment}
+                          </Text>
+                        </View>
+                      );
+                    })}
+                  </>
+                ) : null}
+              </View>
+              <View style={styles.commentBox}>
+                <TextInput
+                  style={styles.commentBoxInput}
+                  placeholder="Deja tu comentario..."
+                  onChangeText={(text) =>
+                    this.setState({ commentBoxInput: text })
+                  }
+                />
+                <TouchableOpacity
+                  style={styles.uploadCommentButton}
+                  onPress={() => this.onComment()}
+                >
+                  <Text style={{ color: "white" }}>Subir</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </Modal>
         ) : null}
@@ -151,19 +186,17 @@ export default class Post extends Component {
     );
   }
 }
-
+ 
 const styles = StyleSheet.create({
   image: {
     height: 300,
-    marginTop:"3%",
+    marginTop: "3%",
     marginBottom: "3%",
     padding: "%5",
     borderRadius: 15,
   },
-  like:{
+  like: {
     fontSize: 30,
-    
-
   },
   // Cómo poner hover?
   container: {
@@ -177,12 +210,13 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 15,
     marginBottom: 5,
-    fontFamily: 'Montserrat',
-    padding: '%5'
+    fontFamily: "Montserrat",
+    padding: "%5",
   },
   modal: {
     border: "none",
     marginTop: 10,
+    width: "100%",
   },
   closeModal: {
     backgroundColor: "red",
@@ -201,7 +235,28 @@ const styles = StyleSheet.create({
   },
   username: {
     fontWeight: "bold",
-    textTransform: 'uppercase',
-    fontFamily: 'Montserrat'
-    }
+    textTransform: "uppercase",
+    fontFamily: "Montserrat",
+  },
+  commentBox: {
+    flexDirection: "row",
+  },
+  commentBoxInput: {
+    width: "70%",
+    height: 50,
+    backgroundColor: "#FAFAFA",
+    borderRadius: 10,
+    marginRight: 5,
+    borderColor: "#CCD5AE",
+    borderWidth: 0.1,
+    padding: 5,
+  },
+  uploadCommentButton: {
+    height: 50,
+    width: 60,
+    borderRadius: 15,
+    backgroundColor: "brown",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });

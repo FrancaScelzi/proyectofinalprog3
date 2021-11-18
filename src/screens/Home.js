@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   FlatList,
+  Image
 } from "react-native";
 import Post from "../components/Post";
 import { db } from "../firebase/config";
@@ -39,6 +40,11 @@ export default class Home extends Component {
     return (
       <View style={styles.container}>
         {/* Lazy louder: carga a medida que se scrollea */}
+        <Image
+            source={require("../../assets/appLogo.png")}
+            style={styles.appLogo}
+            resizeMode={"contain"}
+          />
         <Text style={styles.text}>¡Échale un vistazo a las últimas recetas de nuestros chef!</Text>
         <FlatList
           data={this.state.posts}
@@ -64,11 +70,14 @@ const styles = StyleSheet.create({
   text: {
     color: "black",
     fontSize: 18,
-    margin: 10,
+    margin: 5,
     fontFamily: 'Montserrat',
     fontWeight: 'bold',
-    margin: '10%',
     textAlign: 'center'
-
+  },
+  appLogo: {
+    height: 100,
+    width: 100,
+    alignSelf: 'center',
   },
 });

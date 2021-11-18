@@ -26,7 +26,6 @@ export default class CreatePost extends Component {
 
         .then(response => {
             console.log(response);
-            alert('¡Posteo exitoso!');
             this.setState({
                 comment: '',
             })

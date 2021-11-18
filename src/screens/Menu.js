@@ -33,13 +33,12 @@ export default class Menu extends Component {
     handleLogin(email, password){
         auth.signInWithEmailAndPassword(email, password)
         .then( response => {
-            alert("Iniciaste sesión con éxito");
             this.setState({
                 loggedIn: true
             })
         })
         .catch( response => {
-            alert("Hubo un error en el inicio de sesión");
+            alert('Error al iniciar sesión')
             this.setState({
                 error: "Error en loggeo"
             })
@@ -49,7 +48,6 @@ export default class Menu extends Component {
     handleRegister(username, email, password) {
         auth.createUserWithEmailAndPassword(email, password)
         .then(response => {
-            alert("Registro exitoso");
             // Con updateProfile se le agrega el nombre de usuario al displayName que es una propiedad del user de firebase
             response.user.updateProfile({
                 displayName: username
@@ -60,7 +58,7 @@ export default class Menu extends Component {
         })
         .catch( error => {
             console.log(error);
-            alert("Error en el registro");
+            alert('Error en el registro');
             this.setState({
                 error: "Fallo en el registro"
             })

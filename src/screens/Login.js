@@ -78,11 +78,13 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     margin: 10,
     alignItems: "center",
+    fontFamily: 'Montserrat'
   },
   text: {
     color: "black",
     fontSize: 18,
     margin: 10,
+    fontFamily: 'Montserrat'
   },
   appLogo: {
     height: 200,
