@@ -93,6 +93,26 @@ export default class Post extends Component {
       });
   }
 
+  // onDeleteComment(){
+  //   const posteoActualizar = db.collection("posts").doc(this.props.dataItem.id);
+  //   posteoActualizar
+  //     .update({
+  //       comments: firebase.firestore.FieldValue.arrayRemove({
+  //         userDisplayName: auth.currentUser.displayName,
+  //         comment: this.state.commentBoxInput,
+  //       }),
+  //     })
+  //     .then(() => {
+  //       this.setState({
+  //         comments: this.state.comments - 1,
+  //         commentBoxInput: "",
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
+
   handleModal() {
     if (this.state.showModal) {
       this.setState({
@@ -108,6 +128,11 @@ export default class Post extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Image
+          source={require("../../assets/cocinero1.png")}
+          style={styles.chefIcon}
+          resizeMode={"contain"}
+        />
         <Text style={styles.username}>{this.props.dataItem.data.owner}</Text>
         <Image
           style={styles.image}
@@ -125,7 +150,7 @@ export default class Post extends Component {
         )}
         <Text style={styles.text}>{this.state.likes} likes</Text>
         <Text style={styles.username}>
-          {this.props.dataItem.data.owner}{" "}
+          {this.props.dataItem.data.owner}{':'}{" "}
           {this.props.dataItem.data.description}
         </Text>
         {/* <Text style={styles.text}>{this.props.dataItem.data.cratedAt}</Text> */}
@@ -153,7 +178,7 @@ export default class Post extends Component {
                           </Text>
                           <Text style={styles.commentText}>
                             {comment.comment}
-                          </Text>
+                          </Text>              
                         </View>
                       );
                     })}
@@ -185,6 +210,12 @@ export default class Post extends Component {
 }
 
 const styles = StyleSheet.create({
+  chefIcon:{
+    borderRadius: '50%',
+    height: 30,
+    width: 30,
+    alignSelf: "flex-start",
+  },
   image: {
     height: 300,
     marginTop: "3%",
@@ -224,6 +255,7 @@ const styles = StyleSheet.create({
   },
   modalText: {
     color: "black",
+    fontFamily: 'Montserrat'
   },
   modalView: {
     backgroundColor: "white",
@@ -239,6 +271,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: "100%",
     marginBottom: 10,
+    fontFamily: 'Montserrat'
   },
   commentDisplayName: {
     color: "black",
@@ -248,6 +281,7 @@ const styles = StyleSheet.create({
   commentText: {
     color: "black",
     marginBottom: 10,
+    fontFamily: 'Montserrat'
   },
   commentBox: {
     flexDirection: "row",
@@ -270,5 +304,6 @@ const styles = StyleSheet.create({
     backgroundColor: "brown",
     alignItems: "center",
     justifyContent: "center",
+    fontFamily: 'Montserrat'
   },
 });
