@@ -7,10 +7,11 @@ import {
   TouchableOpacity,
   Modal,
   TextInput,
+  ScrollView,
 } from "react-native";
 import { auth, db } from "../firebase/config";
 import firebase from "firebase";
- 
+
 export default class Post extends Component {
   constructor(props) {
     super(props);
@@ -23,14 +24,14 @@ export default class Post extends Component {
       commentBoxInput: "",
     };
   }
- 
+
   componentDidMount() {
     if (this.props.dataItem) {
       if (this.props.dataItem.data.likes.length !== 0) {
         this.setState({
           likes: this.props.dataItem.data.likes.length,
         });
- 
+
         if (this.props.dataItem.data.likes.includes(auth.currentUser.email)) {
           this.setState({
             liked: true,
@@ -39,10 +40,10 @@ export default class Post extends Component {
       }
     }
   }
- 
+
   onLike() {
     const posteoActualizar = db.collection("posts").doc(this.props.dataItem.id);
- 
+
     posteoActualizar
       .update({
         likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email),
@@ -54,10 +55,10 @@ export default class Post extends Component {
         });
       });
   }
- 
+
   onDislike() {
     const posteoActualizar = db.collection("posts").doc(this.props.dataItem.id);
- 
+
     posteoActualizar
       .update({
         likes: firebase.firestore.FieldValue.arrayRemove(
@@ -71,7 +72,7 @@ export default class Post extends Component {
         });
       });
   }
- 
+
   onComment() {
     const posteoActualizar = db.collection("posts").doc(this.props.dataItem.id);
     posteoActualizar
@@ -84,25 +85,26 @@ export default class Post extends Component {
       .then(() => {
         this.setState({
           comments: this.state.comments + 1,
+          commentBoxInput: "",
         });
       })
       .catch((error) => {
         console.log(error);
       });
   }
- 
-  showModal() {
-    this.setState({
-      showModal: true,
-    });
+
+  handleModal() {
+    if (this.state.showModal) {
+      this.setState({
+        showModal: false
+      });
+    } else {
+      this.setState({
+        showModal: true
+      });
+    }
   }
- 
-  closeModal() {
-    this.setState({
-      showModal: false,
-    });
-  }
- 
+
   render() {
     return (
       <View style={styles.container}>
@@ -127,8 +129,10 @@ export default class Post extends Component {
           {this.props.dataItem.data.description}
         </Text>
         {/* <Text style={styles.text}>{this.props.dataItem.data.cratedAt}</Text> */}
-        <TouchableOpacity onPress={() => this.showModal()}>
-          <Text>Ver comentarios</Text>
+        <TouchableOpacity onPress={() => this.handleModal()}>
+          <Text>
+            {!this.state.showModal ? "Ver comentarios" : "Cerrar comentarios"}
+          </Text>
         </TouchableOpacity>
         {this.state.showModal ? (
           <Modal
@@ -138,24 +142,16 @@ export default class Post extends Component {
             style={styles.modal}
           >
             <View style={styles.modalView}>
-              <TouchableOpacity
-                style={styles.closeModal}
-                onPress={() => {
-                  this.closeModal();
-                }}
-              >
-                <Text style={styles.modalText}>Cerrar</Text>
-              </TouchableOpacity>
-              <View style={{ height: 100, width: "100%" }}>
+              <ScrollView style={styles.commentsList}>
                 {this.props.dataItem.data.comments ? (
                   <>
-                    {this.props.dataItem.data.comments.map((comment) => {
+                    {this.props.dataItem.data.comments.map((comment, index) => {
                       return (
                         <View>
-                          <Text style={{ color: "black", fontWeight: "bold" }}>
+                          <Text style={styles.commentDisplayName}>
                             {comment.userDisplayName}
                           </Text>
-                          <Text style={{ color: "black" }}>
+                          <Text style={styles.commentText}>
                             {comment.comment}
                           </Text>
                         </View>
@@ -163,7 +159,7 @@ export default class Post extends Component {
                     })}
                   </>
                 ) : null}
-              </View>
+              </ScrollView>
               <View style={styles.commentBox}>
                 <TextInput
                   style={styles.commentBoxInput}
@@ -171,6 +167,7 @@ export default class Post extends Component {
                   onChangeText={(text) =>
                     this.setState({ commentBoxInput: text })
                   }
+                  value={this.state.commentBoxInput}
                 />
                 <TouchableOpacity
                   style={styles.uploadCommentButton}
@@ -186,7 +183,7 @@ export default class Post extends Component {
     );
   }
 }
- 
+
 const styles = StyleSheet.create({
   image: {
     height: 300,
@@ -238,8 +235,23 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     fontFamily: "Montserrat",
   },
+  commentsList: {
+    height: 100,
+    width: "100%",
+    marginBottom: 10,
+  },
+  commentDisplayName: {
+    color: "black",
+    fontWeight: "bold",
+    marginBottom: 2,
+  },
+  commentText: {
+    color: "black",
+    marginBottom: 10,
+  },
   commentBox: {
     flexDirection: "row",
+    justifyContent: 'center'
   },
   commentBoxInput: {
     width: "70%",
