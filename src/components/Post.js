@@ -171,8 +171,8 @@ export default class Post extends Component {
                   </>
                 ) : (
                     <Text style={styles.noComments}>
-                      Todavía no hay comentarios, {"\n"} sé la primer persona en
-                      opinar!
+                      Todavía no hay comentarios, {"\n"} ¡sé la primer persona en
+                      opinar sobre esta receta!
                     </Text>
                 )}
               </ScrollView>
