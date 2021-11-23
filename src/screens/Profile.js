@@ -43,7 +43,7 @@ export default class Profile extends Component{
                     <Text style={styles.username}>{auth.currentUser.displayName}</Text>
                     <Text style={styles.text}>{auth.currentUser.email}</Text>
                     <Text style={styles.text}>Último acceso: {auth.currentUser.metadata.lastSignInTime}</Text>
-                    <Text style={styles.text}>{this.state.posts.length} posteos</Text>
+                    <Text style={styles.text}>{this.state.posts.length} posteo/s</Text>
                 </View>
 
                 {/* <TouchableOpacity style={styles.button} onPress={()=> this.props.handleLogout()}>
