@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Image, Text, View, StyleSheet, FlatList} from 'react-native';
+import {Image, Text, View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import {auth, db} from '../firebase/config';
 import Post from '../components/Post'
 
@@ -30,6 +30,11 @@ export default class Profile extends Component{
       });
     }
 
+    delete(id){
+        const actualizarPost = db.collection('posts').doc(id)
+        actualizarPost.delete()
+    }
+
     render(){
         return(
             <View style={styles.container}>
@@ -49,7 +54,16 @@ export default class Profile extends Component{
                 data={this.state.posts}
                 keyExtractor={(post) => post.id.toString()}
                 style={styles.postList}
-                renderItem={({ item }) => <Post dataItem={item}></Post>}
+                renderItem={({ item }) => 
+                <>
+                  <Post dataItem={item}></Post>
+                {
+                    <TouchableOpacity style={styles.button} onPress ={() => this.delete(item.id)}>
+                        <Text style={styles.textButton}>Borrar post</Text>  
+                    </TouchableOpacity>
+                }
+                </>
+                }
                 />
             </View>
         )
@@ -91,4 +105,18 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontFamily: 'Montserrat'
     },
-})
+    button: {
+        width: "40%",
+        height: 45,
+        backgroundColor: "#CCD5AE",
+        borderRadius: 30,
+        alignItems: "center",
+        alignSelf: "center"
+    },
+    textButton: {
+        color: "black",
+        fontSize: 16,
+        margin: 10,
+        fontFamily: 'Montserrat'
+    }
+  });
