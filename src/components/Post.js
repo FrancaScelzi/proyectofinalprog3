@@ -96,11 +96,11 @@ export default class Post extends Component {
   handleModal() {
     if (this.state.showModal) {
       this.setState({
-        showModal: false
+        showModal: false,
       });
     } else {
       this.setState({
-        showModal: true
+        showModal: true,
       });
     }
   }
@@ -135,8 +135,8 @@ export default class Post extends Component {
         <Text style={styles.text}>{this.state.likes} likes</Text>
 
         <Text style={styles.username}>
-          {this.props.dataItem.data.owner}{':'}{" "}
-          {this.props.dataItem.data.description}
+          {this.props.dataItem.data.owner}
+          {":"} {this.props.dataItem.data.description}
         </Text>
 
         <TouchableOpacity onPress={() => this.handleModal()}>
@@ -146,17 +146,15 @@ export default class Post extends Component {
         </TouchableOpacity>
 
         {this.state.showModal ? (
-
           <Modal
             animationType="fade"
             transparent={false}
             visible={this.state.showModal}
             style={styles.modal}
           >
-
             <View style={styles.modalView}>
               <ScrollView style={styles.commentsList}>
-                {this.props.dataItem.data.comments ? (
+                {this.props.dataItem.data.comments.length !== 0 ? (
                   <>
                     {this.props.dataItem.data.comments.map((comment, index) => {
                       return (
@@ -166,12 +164,17 @@ export default class Post extends Component {
                           </Text>
                           <Text style={styles.commentText}>
                             {comment.comment}
-                          </Text>              
+                          </Text>
                         </View>
                       );
                     })}
                   </>
-                ) : null}
+                ) : (
+                    <Text style={styles.noComments}>
+                      Todavía no hay comentarios, {"\n"} sé la primer persona en
+                      opinar!
+                    </Text>
+                )}
               </ScrollView>
 
               <View style={styles.commentBox}>
@@ -186,23 +189,22 @@ export default class Post extends Component {
 
                 <TouchableOpacity
                   style={styles.uploadCommentButton}
-                  onPress={() => this.onComment()}>
-                    <Text style={{ color: "white" }}>Subir</Text>
+                  onPress={() => this.onComment()}
+                >
+                  <Text style={{ color: "white" }}>Subir</Text>
                 </TouchableOpacity>
               </View>
             </View>
           </Modal>
-
         ) : null}
-
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  chefIcon:{
-    borderRadius: '50%',
+  chefIcon: {
+    borderRadius: "50%",
     height: 30,
     width: 30,
     alignSelf: "flex-start",
@@ -245,7 +247,7 @@ const styles = StyleSheet.create({
   },
   modalText: {
     color: "black",
-    fontFamily: 'Montserrat'
+    fontFamily: "Montserrat",
   },
   modalView: {
     backgroundColor: "white",
@@ -261,7 +263,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: "100%",
     marginBottom: 10,
-    fontFamily: 'Montserrat'
+    fontFamily: "Montserrat",
   },
   commentDisplayName: {
     color: "black",
@@ -271,11 +273,11 @@ const styles = StyleSheet.create({
   commentText: {
     color: "black",
     marginBottom: 10,
-    fontFamily: 'Montserrat'
+    fontFamily: "Montserrat",
   },
   commentBox: {
     flexDirection: "row",
-    justifyContent: 'center'
+    justifyContent: "center",
   },
   commentBoxInput: {
     width: "70%",
@@ -294,6 +296,13 @@ const styles = StyleSheet.create({
     backgroundColor: "brown",
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: 'Montserrat'
+    fontFamily: "Montserrat",
+  },
+  noComments: {
+    color: "black",
+    fontFamily: "Montserrat",
+    fontSize: 16,
+    textAlign: 'center',
+    paddingTop: 20,
   },
 });
