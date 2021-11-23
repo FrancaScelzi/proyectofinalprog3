@@ -30,7 +30,7 @@ export default class Profile extends Component{
       });
     }
 
-    delete(id){
+    deletePost(id){
         const actualizarPost = db.collection('posts').doc(id)
         actualizarPost.delete()
     }
@@ -56,10 +56,10 @@ export default class Profile extends Component{
                 style={styles.postList}
                 renderItem={({ item }) => 
                 <>
-                  <Post dataItem={item}></Post>
+                <Post dataItem={item}></Post>
                 {
-                    <TouchableOpacity style={styles.button} onPress ={() => this.delete(item.id)}>
-                        <Text style={styles.textButton}>Borrar post</Text>  
+                    <TouchableOpacity style={styles.button} onPress ={() => this.deletePost(item.id)}>
+                        <Text style={styles.textButton}>Eliminar receta</Text>  
                     </TouchableOpacity>
                 }
                 </>
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     textButton: {
         color: "black",
         fontSize: 16,
-        margin: 10,
+        margin: 5,
         fontFamily: 'Montserrat'
     }
   });
