@@ -88,11 +88,11 @@ export default class Menu extends Component {
                     <Drawer.Screen name = 'Home'>
                         {props => <Home {...props}/>}
                     </Drawer.Screen>
-                    <Drawer.Screen name='Buscar receta'>
-                    {props => <Search {...props}/>}
-                    </Drawer.Screen>
                     <Drawer.Screen name= 'Tu perfil'>
                         {props => <Profile {...props} handleLogout={()=> this.handleLogout()}/>}
+                    </Drawer.Screen>
+                    <Drawer.Screen name='Buscar receta'>
+                    {props => <Search {...props}/>}
                     </Drawer.Screen>
                     <Drawer.Screen name = 'Publicar receta'>
                         {props => <CreatePost {...props}/>}
