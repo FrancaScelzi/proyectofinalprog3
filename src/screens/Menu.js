@@ -88,7 +88,7 @@ export default class Menu extends Component {
                     <Drawer.Screen name = 'Home'>
                         {props => <Home {...props}/>}
                     </Drawer.Screen>
-                    <Drawer.Screen name='Buscador'>
+                    <Drawer.Screen name='Buscar receta'>
                     {props => <Search {...props}/>}
                     </Drawer.Screen>
                     <Drawer.Screen name= 'Tu perfil'>
