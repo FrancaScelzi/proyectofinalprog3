@@ -8,7 +8,7 @@ import {
   Image
 } from "react-native";
 import Post from "../components/Post";
-import { db } from "../firebase/config";
+import { auth, db } from "../firebase/config";
 
 export default class Home extends Component {
   constructor(props) {
@@ -35,6 +35,7 @@ export default class Home extends Component {
         });
       });
   }
+
   render() {
     console.log(this.state.posts);
     return (
@@ -45,7 +46,8 @@ export default class Home extends Component {
             style={styles.appLogo}
             resizeMode={"contain"}
           />
-        <Text style={styles.text}>¡Échale un vistazo a las últimas recetas de nuestros chef!</Text>
+        <Text style={styles.welcomeText}>¡Bienvenido {auth.currentUser.displayName}!</Text>
+        <Text style={styles.text}>Échale un vistazo a las últimas recetas de nuestros chef</Text>
         <FlatList
           data={this.state.posts}
           keyExtractor={(post) => post.id.toString()}
@@ -69,10 +71,10 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "black",
-    fontSize: 18,
+    fontSize: 12,
     margin: 5,
     fontFamily: 'Montserrat',
-    fontWeight: 'bold',
+    // fontWeight: '',
     textAlign: 'center'
   },
   appLogo: {
@@ -80,4 +82,12 @@ const styles = StyleSheet.create({
     width: 100,
     alignSelf: 'center',
   },
+  welcomeText: {
+    color: "#D4A373",
+    fontSize: 16,
+    margin: 5,
+    fontFamily: 'Montserrat',
+    fontWeight: 'bold',
+    textAlign: 'center'
+  }
 });

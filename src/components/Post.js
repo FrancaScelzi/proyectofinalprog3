@@ -93,26 +93,6 @@ export default class Post extends Component {
       });
   }
 
-  // onDeleteComment(){
-  //   const posteoActualizar = db.collection("posts").doc(this.props.dataItem.id);
-  //   posteoActualizar
-  //     .update({
-  //       comments: firebase.firestore.FieldValue.arrayRemove({
-  //         userDisplayName: auth.currentUser.displayName,
-  //         comment: this.state.commentBoxInput,
-  //       }),
-  //     })
-  //     .then(() => {
-  //       this.setState({
-  //         comments: this.state.comments - 1,
-  //         commentBoxInput: "",
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
-
   handleModal() {
     if (this.state.showModal) {
       this.setState({
@@ -153,7 +133,6 @@ export default class Post extends Component {
           {this.props.dataItem.data.owner}{':'}{" "}
           {this.props.dataItem.data.description}
         </Text>
-        {/* <Text style={styles.text}>{this.props.dataItem.data.cratedAt}</Text> */}
         <TouchableOpacity onPress={() => this.handleModal()}>
           <Text>
             {!this.state.showModal ? "Ver comentarios" : "Cerrar comentarios"}
@@ -226,7 +205,6 @@ const styles = StyleSheet.create({
   like: {
     fontSize: 30,
   },
-  // Cómo poner hover?
   container: {
     flex: 1,
     backgroundColor: "#F3F5E0",

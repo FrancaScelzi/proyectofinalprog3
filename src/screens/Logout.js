@@ -3,14 +3,7 @@ import {Text, View, StyleSheet, TextInput, TouchableOpacity, Image} from "react-
 import { auth } from "../firebase/config";
 
 export default class Login extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-     
-  //   };
-  // }
-
-
+  
   render() {
     return (
       <View style={styles.container}>
