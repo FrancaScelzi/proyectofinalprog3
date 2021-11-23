@@ -13,7 +13,8 @@ export default class Login extends Component {
   onLogin() {
     if (this.state.email !== "" && this.state.password !== "") {
       this.props.handleLogin(this.state.email, this.state.password);
-    } else {
+    }
+    else {
       console.log("¡Completar los campos!");
     }
   }
@@ -28,12 +29,14 @@ export default class Login extends Component {
             resizeMode={"contain"}
           />
         </View>
+
         <TextInput
           style={styles.field}
           keyboardType="email-address"
           placeholder="Email"
           onChangeText={(text) => this.setState({ email: text })}
         />
+
         <TextInput
           style={styles.field}
           keyboardType="number-pad"
@@ -41,14 +44,13 @@ export default class Login extends Component {
           secureTextEntry={true}
           onChangeText={(text) => this.setState({ password: text })}
         />
+
         <TouchableOpacity style={styles.button} onPress={() => this.onLogin()}>
           <Text style={styles.text}>Login</Text>
         </TouchableOpacity>
-        <View>
-          <TouchableOpacity onPress={() => console.log("Navegar al registro")}>
-            <Text style={styles.text}>¿No tenés cuenta? ¡Registrate!</Text>
-          </TouchableOpacity>
-        </View>
+
+        <Text style={styles.text}>¿No tenés cuenta? ¡Registrate!</Text>
+        
       </View>
     );
   }

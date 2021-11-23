@@ -85,34 +85,39 @@ export default class Menu extends Component {
                 <Drawer.Navigator initialRouteName ='Login'>
                     {this.state.loggedIn === true ?
                     <>
-                    <Drawer.Screen name = 'Home'>
-                        {props => <Home {...props}/>}
-                    </Drawer.Screen>
-                    <Drawer.Screen name= 'Tu perfil'>
-                        {props => <Profile {...props} handleLogout={()=> this.handleLogout()}/>}
-                    </Drawer.Screen>
-                    <Drawer.Screen name='Buscar receta'>
-                    {props => <Search {...props}/>}
-                    </Drawer.Screen>
-                    <Drawer.Screen name = 'Publicar receta'>
-                        {props => <CreatePost {...props}/>}
-                    </Drawer.Screen>
-                    <Drawer.Screen name='Cerrar sesión'>
-                        {props => <Logout {...props} handleLogout={()=> this.handleLogout()}/>}
-                    </Drawer.Screen>
+                        <Drawer.Screen name = 'Home'>
+                            {props => <Home {...props}/>}
+                        </Drawer.Screen>
+
+                        <Drawer.Screen name= 'Tu perfil'>
+                            {props => <Profile {...props} handleLogout={()=> this.handleLogout()}/>}
+                        </Drawer.Screen>
+
+                        <Drawer.Screen name='Buscar receta'>
+                        {props => <Search {...props}/>}
+                        </Drawer.Screen>
+
+                        <Drawer.Screen name = 'Publicar receta'>
+                            {props => <CreatePost {...props}/>}
+                        </Drawer.Screen>
+
+                        <Drawer.Screen name='Cerrar sesión'>
+                            {props => <Logout {...props} handleLogout={()=> this.handleLogout()}/>}
+                        </Drawer.Screen>
                     </>
                     :
                     <>
-                     <Drawer.Screen name="Login">
-                                {props => <Login {...props} handleLogin={(email, password)=>this.handleLogin(email, password)}/>}
-                            </Drawer.Screen>
-                            <Drawer.Screen name = "Registro">
-                                {props => <Register {...props} handleRegister={(email, password, username)=>this.handleRegister(email, password, username)}/>}
-                            </Drawer.Screen>
-                        </>
+                        <Drawer.Screen name="Login">
+                            {props => <Login {...props} handleLogin={(email, password)=>this.handleLogin(email, password)}/>}
+                        </Drawer.Screen>
+
+                        <Drawer.Screen name = "Registro">
+                            {props => <Register {...props} handleRegister={(email, password, username)=>this.handleRegister(email, password, username)}/>}
+                        </Drawer.Screen>
+                            </>
                 }
                 </Drawer.Navigator>
             </NavigationContainer>
-            )
-        }
+        )
+    }
 }

@@ -93,9 +93,6 @@ export default class Post extends Component {
       });
   }
 
-// Falta la función de borrar comentario
-// Falta la función de borrar posteo
-
   handleModal() {
     if (this.state.showModal) {
       this.setState({
@@ -116,12 +113,15 @@ export default class Post extends Component {
           style={styles.chefIcon}
           resizeMode={"contain"}
         />
+
         <Text style={styles.username}>{this.props.dataItem.data.owner}</Text>
+
         <Image
           style={styles.image}
           source={{ uri: this.props.dataItem.data.photo }}
           resizeMode="cover"
         />
+
         {!this.state.liked ? (
           <TouchableOpacity onPress={() => this.onLike()}>
             <Text style={styles.like}>❤️</Text>
@@ -131,23 +131,29 @@ export default class Post extends Component {
             <Text style={styles.like}>🖤</Text>
           </TouchableOpacity>
         )}
+
         <Text style={styles.text}>{this.state.likes} likes</Text>
+
         <Text style={styles.username}>
           {this.props.dataItem.data.owner}{':'}{" "}
           {this.props.dataItem.data.description}
         </Text>
+
         <TouchableOpacity onPress={() => this.handleModal()}>
           <Text>
             {!this.state.showModal ? "Ver comentarios" : "Cerrar comentarios"}
           </Text>
         </TouchableOpacity>
+
         {this.state.showModal ? (
+
           <Modal
             animationType="fade"
             transparent={false}
             visible={this.state.showModal}
             style={styles.modal}
           >
+
             <View style={styles.modalView}>
               <ScrollView style={styles.commentsList}>
                 {this.props.dataItem.data.comments ? (
@@ -167,6 +173,7 @@ export default class Post extends Component {
                   </>
                 ) : null}
               </ScrollView>
+
               <View style={styles.commentBox}>
                 <TextInput
                   style={styles.commentBoxInput}
@@ -176,16 +183,18 @@ export default class Post extends Component {
                   }
                   value={this.state.commentBoxInput}
                 />
+
                 <TouchableOpacity
                   style={styles.uploadCommentButton}
-                  onPress={() => this.onComment()}
-                >
-                  <Text style={{ color: "white" }}>Subir</Text>
+                  onPress={() => this.onComment()}>
+                    <Text style={{ color: "white" }}>Subir</Text>
                 </TouchableOpacity>
               </View>
             </View>
           </Modal>
+
         ) : null}
+
       </View>
     );
   }

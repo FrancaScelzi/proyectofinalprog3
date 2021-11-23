@@ -8,54 +8,59 @@ export default class Register extends Component {
                 email: "",
                 password: "",
                 username: "",
-             }
-     }
-
-onRegister(){
-    if (this.state.email !== "" && this.state.password !== "" && this.state.username !== ""){
-            this.props.handleRegister(this.state.username,this.state.email, this.state.password)
-        }
-     else {
-         console.log("¡Completar los campos!")
-     }
+            }
     }
 
-render(){
-    return (
-    <View style={styles.container}>
-        <View>
-          <Image
-            source={require("../../assets/appLogo.png")}
-            style={styles.appLogo}
-            resizeMode={"contain"}
-          />
-        </View>
-        <TextInput
-            style={styles.field}
-            keyboardType="default"
-            placeholder="Username"
-            onChangeText={text => this.setState({ username: text })}
-        />
-        <TextInput
-            style={styles.field}
-            keyboardType="email-address"
-            placeholder="Email"
-            onChangeText={text => this.setState({ email: text })}
-        />
-        <TextInput
-            style={styles.field}
-            keyboardType='default'
-            placeholder="Password"
-            secureTextEntry={true}
-            onChangeText={text => this.setState({ password: text })}
-        />
-        <TouchableOpacity style = {styles.button} onPress={() => this.onRegister()}>
-            <Text style = {styles.text}> Sign Up </Text>
-        </TouchableOpacity>
-    </View>
+    onRegister(){
+        if (this.state.email !== "" && this.state.password !== "" && this.state.username !== ""){
+                this.props.handleRegister(this.state.username,this.state.email, this.state.password)
+        }
+        else {
+            console.log("¡Completar los campos!")
+        }
+    }
 
-    )
-}
+    render(){
+        return (
+        <View style={styles.container}>
+            <View>
+                <Image
+                    source={require("../../assets/appLogo.png")}
+                    style={styles.appLogo}
+                    resizeMode={"contain"}
+                />
+            </View>
+
+            <TextInput
+                style={styles.field}
+                keyboardType="default"
+                placeholder="Username"
+                onChangeText={text => this.setState({ username: text })}
+            />
+
+            <TextInput
+                style={styles.field}
+                keyboardType="email-address"
+                placeholder="Email"
+                onChangeText={text => this.setState({ email: text })}
+            />
+
+            <TextInput
+                style={styles.field}
+                keyboardType='default'
+                placeholder="Password"
+                secureTextEntry={true}
+                onChangeText={text => this.setState({ password: text })}
+            />
+
+            <TouchableOpacity style = {styles.button} onPress={() => this.onRegister()}>
+                <Text style = {styles.text}> Sign Up </Text>
+            </TouchableOpacity>
+
+        </View>
+
+        )
+    }
 }
 
 const styles = StyleSheet.create({
@@ -86,9 +91,9 @@ const styles = StyleSheet.create({
         color: "black",
         fontSize: 18,
         margin: 10,
-      },
-      appLogo: {
+    },
+    appLogo: {
         height: 200,
         width: 200,
-      },
+    },
 })
