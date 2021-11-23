@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   FlatList,
   Image
 } from "react-native";
@@ -17,6 +16,7 @@ export default class Home extends Component {
       posts: [],
     };
   }
+  
   componentDidMount() {
     db.collection("posts")
       .orderBy("cratedAt", "desc")

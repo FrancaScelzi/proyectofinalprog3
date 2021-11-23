@@ -13,51 +13,51 @@ export default class Search extends Component{
         }
     }
 
-    componentDidMount(){
-        db.collection('posts').orderBy('cratedAt', 'desc').onSnapshot(
-            docs=> {
-                let postsAux= []
-                docs.forEach (doc =>{
-                    postsAux.push({
-                        id: doc.id,
-                        data: doc.data()
-                    })
+componentDidMount(){
+    db.collection('posts').orderBy('cratedAt', 'desc').onSnapshot(
+        docs=> {
+            let postsAux= []
+            docs.forEach (doc =>{
+                postsAux.push({
+                    id: doc.id,
+                    data: doc.data()
                 })
-                this.setState({
-                    posts: postsAux,
-                })
-            }
-        ) 
-    } 
+            })
+            this.setState({
+                posts: postsAux,
+            })
+        }
+    ) 
+  } 
 
-    render(){
-        let filteredPosts = this.state.searchInput.length > 0
-            ? this.state.posts.filter(element => element.data.owner.includes(this.state.searchInput)) 
-            : this.state.posts
+render(){
+    let filteredPosts = this.state.searchInput.length > 0
+        ? this.state.posts.filter(element => element.data.owner.includes(this.state.searchInput)) 
+        : this.state.posts
 
-        return(
-            <View style={styles.container}>
-                <>
-                <TextInput
-                    style={styles.field}
-                    keyboardType="default"
-                    placeholder="Buscar recetas de un chef"
-                    onChangeText={text => this.setState({searchInput: text})}
-                />
-                {filteredPosts.length > 0 ?
-                        <FlatList
-                            style={styles.postList}
-                            data = {filteredPosts}
-                            keyExtractor = {post => post.id.toString()}
-                            renderItem= {({item})=>
-                                <Post dataItem = {item}></Post>}
-                        />:
-                        <Text>Lo sentimos, este chef no ha publicado ninguna receta</Text> 
-                } 
-                </> 
-            </View>
-        )
-    }
+    return(
+        <View style={styles.container}>
+            <>
+            <TextInput
+                style={styles.field}
+                keyboardType="default"
+                placeholder="Buscar recetas de un chef"
+                onChangeText={text => this.setState({searchInput: text})}
+            />
+            {filteredPosts.length > 0 ?
+                    <FlatList
+                        style={styles.postList}
+                        data = {filteredPosts}
+                        keyExtractor = {post => post.id.toString()}
+                        renderItem= {({item})=>
+                            <Post dataItem = {item}></Post>}
+                    />:
+                    <Text>Lo sentimos, este chef no ha publicado ninguna receta</Text> 
+            } 
+            </> 
+        </View>
+    )
+  } 
 }
 
 const styles = StyleSheet.create({
@@ -95,9 +95,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     margin: 10,
     fontFamily: 'Montserrat'
-  },
-  appLogo: {
-    height: 200,
-    width: 200,
   },
 })

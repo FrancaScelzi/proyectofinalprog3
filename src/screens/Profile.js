@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import {Image, Text, View, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+import {Image, Text, View, StyleSheet, FlatList} from 'react-native';
 import {auth, db} from '../firebase/config';
 import Post from '../components/Post'
-import firebase from 'firebase';
 
 export default class Profile extends Component{
     constructor(props){
@@ -46,10 +45,6 @@ export default class Profile extends Component{
                     <Text style={styles.text}>{this.state.posts.length} posteo/s</Text>
                 </View>
 
-                {/* <TouchableOpacity style={styles.button} onPress={()=> this.props.handleLogout()}>
-                    <Text style={styles.text}>Cerrar sesión</Text>
-                </TouchableOpacity> */}
-
                 <FlatList
                 data={this.state.posts}
                 keyExtractor={(post) => post.id.toString()}
@@ -61,7 +56,6 @@ export default class Profile extends Component{
     }
 
 }
-
 
 const styles = StyleSheet.create({
     container: {
@@ -97,12 +91,4 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontFamily: 'Montserrat'
     },
-    // button: {
-    //     width: "40%",
-    //     height: 45,
-    //     backgroundColor: "#CCD5AE",
-    //     borderRadius: 30,
-    //     margin: 10,
-    //     alignItems: "center",
-    // },
-  });
+})

@@ -93,6 +93,9 @@ export default class Post extends Component {
       });
   }
 
+// Falta la función de borrar comentario
+// Falta la función de borrar posteo
+
   handleModal() {
     if (this.state.showModal) {
       this.setState({
