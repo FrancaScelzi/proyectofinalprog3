@@ -74,23 +74,27 @@ export default class Post extends Component {
   }
 
   onComment() {
-    const posteoActualizar = db.collection("posts").doc(this.props.dataItem.id);
-    posteoActualizar
-      .update({
-        comments: firebase.firestore.FieldValue.arrayUnion({
-          userDisplayName: auth.currentUser.displayName,
-          comment: this.state.commentBoxInput,
-        }),
-      })
-      .then(() => {
-        this.setState({
-          comments: this.state.comments + 1,
-          commentBoxInput: "",
+    if (this.state.commentBoxInput !== "") {
+      const posteoActualizar = db
+        .collection("posts")
+        .doc(this.props.dataItem.id);
+      posteoActualizar
+        .update({
+          comments: firebase.firestore.FieldValue.arrayUnion({
+            userDisplayName: auth.currentUser.displayName,
+            comment: this.state.commentBoxInput,
+          }),
+        })
+        .then(() => {
+          this.setState({
+            comments: this.state.comments + 1,
+            commentBoxInput: "",
+          });
+        })
+        .catch((error) => {
+          console.log(error);
         });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    }
   }
 
   handleModal() {
@@ -170,10 +174,10 @@ export default class Post extends Component {
                     })}
                   </>
                 ) : (
-                    <Text style={styles.noComments}>
-                      Todavía no hay comentarios, {"\n"} ¡sé la primer persona en
-                      opinar sobre esta receta!
-                    </Text>
+                  <Text style={styles.noComments}>
+                    Todavía no hay comentarios, {"\n"} ¡sé la primer persona en
+                    opinar sobre esta receta!
+                  </Text>
                 )}
               </ScrollView>
 
@@ -188,7 +192,11 @@ export default class Post extends Component {
                 />
 
                 <TouchableOpacity
-                  style={styles.uploadCommentButton}
+                  style={
+                    this.state.commentBoxInput !== ""
+                      ? styles.uploadCommentButton
+                      : styles.uploadCommentButtonDisabled
+                  }
                   onPress={() => this.onComment()}
                 >
                   <Text style={{ color: "white" }}>Subir</Text>
@@ -298,11 +306,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     fontFamily: "Montserrat",
   },
+  uploadCommentButtonDisabled: {
+    height: 50,
+    width: 60,
+    borderRadius: 15,
+    backgroundColor: "#FAEDCD",
+    alignItems: "center",
+    justifyContent: "center",
+    fontFamily: "Montserrat",
+  },
   noComments: {
     color: "black",
     fontFamily: "Montserrat",
     fontSize: 16,
-    textAlign: 'center',
+    textAlign: "center",
     paddingTop: 20,
   },
 });

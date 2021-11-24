@@ -7,6 +7,7 @@ export default class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      error: ""
     };
   }
 
@@ -15,7 +16,9 @@ export default class Login extends Component {
       this.props.handleLogin(this.state.email, this.state.password);
     }
     else {
-      console.log("¡Completar los campos!");
+      this.setState({
+        error: "Por favor, complete los campos"
+      })
     }
   }
 
@@ -45,7 +48,8 @@ export default class Login extends Component {
           onChangeText={(text) => this.setState({ password: text })}
         />
 
-        <TouchableOpacity style={styles.button} onPress={() => this.onLogin()}>
+        <Text style={styles.errorText}>{this.state.error}</Text>
+        <TouchableOpacity style={this.state.password !== "" ? styles.button : styles.buttonDisabled} onPress={() => this.onLogin()}>
           <Text style={styles.text}>Login</Text>
         </TouchableOpacity>
 
@@ -81,11 +85,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     fontFamily: 'Montserrat'
   },
+  buttonDisabled: {
+    width: "40%",
+    height: 45,
+    backgroundColor: "#FAEDCD",
+    borderRadius: 30,
+    margin: 10,
+    alignItems: "center",
+    fontFamily: 'Montserrat'
+  },
   text: {
     color: "black",
     fontSize: 18,
     margin: 10,
     fontFamily: 'Montserrat'
+  },
+  errorText: {
+    margin: 15,
+    fontFamily: 'Montserrat',
   },
   appLogo: {
     height: 200,

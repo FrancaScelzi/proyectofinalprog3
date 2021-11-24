@@ -8,6 +8,7 @@ export default class Register extends Component {
                 email: "",
                 password: "",
                 username: "",
+                error: ""
             }
     }
 
@@ -16,7 +17,9 @@ export default class Register extends Component {
                 this.props.handleRegister(this.state.username,this.state.email, this.state.password)
         }
         else {
-            console.log("¡Completar los campos!")
+            this.setState({
+                error: "Por favor, complete los campos"
+            })
         }
     }
 
@@ -52,8 +55,9 @@ export default class Register extends Component {
                 secureTextEntry={true}
                 onChangeText={text => this.setState({ password: text })}
             />
-
-            <TouchableOpacity style = {styles.button} onPress={() => this.onRegister()}>
+            <Text style={styles.errorText}>{this.state.error}</Text>
+            <TouchableOpacity style = {this.state.password !== '' ? styles.button : styles.buttonDisabled} 
+            onPress={() => this.onRegister()}>
                 <Text style = {styles.text}> Sign Up </Text>
             </TouchableOpacity>
 
@@ -86,11 +90,25 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         margin: 10,
         alignItems: "center",
+        fontFamily: 'Montserrat'
+    },
+    buttonDisabled: {
+        width: "40%",
+        height: 45,
+        backgroundColor: "#FAEDCD",
+        borderRadius: 30,
+        margin: 10,
+        alignItems: "center",
+        fontFamily: 'Montserrat'
     },
     text: {
         color: "black",
         fontSize: 18,
         margin: 10,
+    },
+    errorText: {
+        fontFamily: 'Montserrat',
+        margin: 15
     },
     appLogo: {
         height: 200,
