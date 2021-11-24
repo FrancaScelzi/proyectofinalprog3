@@ -72,7 +72,9 @@ const styles = StyleSheet.create({
   },
   appLogo: {
     height: 100,
-    width: 100,
+    width: 200,
+    marginTop: 10,
+    marginBottom: 10,
     alignSelf: 'center',
   },
   welcomeText: {

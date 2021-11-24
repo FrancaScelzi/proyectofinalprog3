@@ -112,7 +112,9 @@ const styles = StyleSheet.create({
         margin: 15
     },
     appLogo: {
-        height: 200,
+        height: 100,
         width: 200,
+        marginTop: 20,
+        marginBottom: 20,
     },
 })

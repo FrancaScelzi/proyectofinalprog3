@@ -112,7 +112,7 @@ export default class Menu extends Component {
                         <Drawer.Screen name = "Registro">
                             {props => <Register {...props} handleRegister={(email, password, username)=>this.handleRegister(email, password, username)}/>}
                         </Drawer.Screen>
-                            </>
+                    </>
                 }
                 </Drawer.Navigator>
             </NavigationContainer>
