@@ -55,9 +55,10 @@ export default class Register extends Component {
                 secureTextEntry={true}
                 onChangeText={text => this.setState({ password: text })}
             />
+
             <Text style={styles.errorText}>{this.state.error}</Text>
-            <TouchableOpacity style = {this.state.password !== '' ? styles.button : styles.buttonDisabled} 
-            onPress={() => this.onRegister()}>
+
+            <TouchableOpacity style = {this.state.password !== '' ? styles.button : styles.buttonDisabled} onPress={() => this.onRegister()}>
                 <Text style = {styles.text}> Sign Up </Text>
             </TouchableOpacity>
 

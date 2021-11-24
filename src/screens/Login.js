@@ -49,6 +49,7 @@ export default class Login extends Component {
         />
 
         <Text style={styles.errorText}>{this.state.error}</Text>
+        
         <TouchableOpacity style={this.state.password !== "" ? styles.button : styles.buttonDisabled} onPress={() => this.onLogin()}>
           <Text style={styles.text}>Login</Text>
         </TouchableOpacity>

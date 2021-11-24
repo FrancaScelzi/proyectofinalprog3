@@ -20,7 +20,6 @@ export default class Menu extends Component {
     }
 
     componentDidMount(){
-    // Su rol es recordar la sesión iniciada. Si no está, cada vez que se refresque la págna hay que volver a iniciar sesión
         auth.onAuthStateChanged( user => {
             if(user){
                 this.setState({
@@ -48,7 +47,6 @@ export default class Menu extends Component {
     handleRegister(username, email, password) {
         auth.createUserWithEmailAndPassword(email, password)
         .then(response => {
-            // Con updateProfile se le agrega el nombre de usuario al displayName que es una propiedad del user de firebase
             response.user.updateProfile({
                 displayName: username
             })
