@@ -32,9 +32,10 @@ componentDidMount(){
 
 render(){
     let filteredPosts = this.state.searchInput.length > 0
-        ? this.state.posts.filter(element => element.data.owner.includes(this.state.searchInput)) 
+        ? this.state.posts.filter(element => element.data.email.toUpperCase().includes(this.state.searchInput.toUpperCase())) 
         : this.state.posts
 
+        console.log(this.state.posts)
     return(
         <View style={styles.container}>
             <>
