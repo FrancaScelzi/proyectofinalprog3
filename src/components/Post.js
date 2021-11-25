@@ -125,7 +125,7 @@ export default class Post extends Component {
           source={{ uri: this.props.dataItem.data.photo }}
           resizeMode="cover"
         />
-
+        {/* Condicional like */}
         {!this.state.liked ? (
           <TouchableOpacity onPress={() => this.onLike()}>
             <Text style={styles.like}>❤️</Text>
@@ -145,10 +145,12 @@ export default class Post extends Component {
 
         <TouchableOpacity onPress={() => this.handleModal()}>
           <Text>
+            {/* Condicional modal */}
             {!this.state.showModal ? "Ver comentarios" : "Cerrar comentarios"}
           </Text>
         </TouchableOpacity>
 
+        {/* Condicional modal */}
         {this.state.showModal ? (
           <Modal
             animationType="fade"
@@ -158,6 +160,7 @@ export default class Post extends Component {
           >
             <View style={styles.modalView}>
               <ScrollView style={styles.commentsList}>
+                {/* Condicional comentarios */}
                 {this.props.dataItem.data.comments.length !== 0 ? (
                   <>
                     {this.props.dataItem.data.comments.map((comment, index) => {
