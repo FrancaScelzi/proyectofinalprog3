@@ -14,18 +14,24 @@ export default class MyCamera extends React.Component {
   }
 
   componentDidMount() {
-    Camera.requestCameraPermissionsAsync().then((response) => {
+    Camera.requestCameraPermissionsAsync()
+    .then((response) => {
       console.log(response);
       this.setState({
         permission: response.granted,
+        // granted es una propiedad de response (true / false)
       });
-    });
+    })
+    .catch(error => console.log(error))
   }
 
   takePicture() {
     if (!this.camera) return;
-    this.camera.takePictureAsync().then((photo) => {
+    // Método propio de la cámara
+    this.camera.takePictureAsync()
+    .then((photo) => {
       this.setState({
+        // Dirección interna temporal de la foto = uri
         photo: photo.uri,
       });
     });
@@ -38,9 +44,9 @@ export default class MyCamera extends React.Component {
       })
       .then((image) => {
         const ref = storage.ref(`camera/${Date.now()}.jpg`);
-        ref.put(image).then(() => {
-          console.log(ref.getDownloadURL);
-
+        ref.put(image).
+        then(() => {
+          // URL Público
           ref.getDownloadURL().then((url) => {
             console.log(url);
             this.setState({
@@ -85,9 +91,11 @@ export default class MyCamera extends React.Component {
           <Camera
             style={styles.camera}
             type={Camera.Constants.Type.front || Camera.Constants.Type.back}
+            // Referencia: objeto camera. La guardamos como valor en this.camera para poder sacar foto y utilizar otros métodos. 
             ref={(referencia) => (this.camera = referencia)}
           >
             <View style={styles.buttonContainer}>
+              {/* Botón para sacar la foto */}
               <TouchableOpacity
                 style={styles.button}
                 onPress={() => this.takePicture()}
